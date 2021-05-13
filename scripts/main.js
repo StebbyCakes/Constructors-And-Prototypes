@@ -36,26 +36,41 @@ function expect(target) {
 // \___/\____/_/ /_/____/\__/_/   \__,_/\___/\__/\____/_/  /____/
 //
 // ONLY ADD CODE TO THIS SECTION
-function Human({name, pet, cool, feed} = {}) {
-  this.name = name;
-  this.pet = pet;
+function Human({name, cool = false} = {}) { // creating the constructor for Human
+  this.name = name; // these are the propertoes that the object human should have
   this.cool = cool;
-  this.feed = feed;
-  function pet(dog){
-    dog.status = 'happy';
-  }
-  function feed(dog){
-    dog.hungry = false;
-  }
+
 };
 
-function Dog({color, hungry , feed, owner, status} = {}) {
-  this.color = color;
-  this.hungry = hungry;
-  this.feed = feed;
-  this.owner = owner;
+function Dog({color, hungry = true, status = 'normal', owner} = {}) { // this makes status have a default value of normal for ALL dogs and hungry default true
+  this.color = color; // the {} on above line means if an value doesnt get passes in for a certain object it gets a default value of empty object
+  this.hungry = hungry; // If I changed "= hungry" here to "= normal" that would be hard coded and not be set as a parameter than can change
   this.status = status;
+  this.owner = owner;
 };
+
+Human.prototype.pet = function(Dog){ // pet is a function of Human that needs to be called so we create a pet method with an object of dog
+  Dog.status = 'happy';
+}
+Human.prototype.feed = function(Dog) {
+  Dog.hungry = false;
+}
+//
+// example of what optional chaining is
+// const kate = {
+//   name: 'Kate',
+//   favColor: 'purple',
+// }
+//
+// const esteban = {
+//   pet: {
+//     name: 'Marley',
+//   }
+// }
+//  esteban.pet.name;
+//  kate.pet && kate.pet.name; // searches for pet first and it it finds it, then returns its name
+//
+//  kate.pet?.name;// if I have pet, then give me the name also known as "optional chaining"
 
 
 
@@ -68,13 +83,11 @@ function Dog({color, hungry , feed, owner, status} = {}) {
 
 let mady = new Human({
   name: 'Mady',
-  cool : false,
 });
 
 let faith = new Human({
   name: 'Faith',
   cool: true,
-  pet: "normal"
 });
 
 //        __
@@ -87,13 +100,11 @@ let faith = new Human({
 let oz = new Dog({
   color: "red",
   hungry: false,
-  status: 'normal'
 });
 
 let moonshine = new Dog({
   color: "blue-red",
   owner: faith,
-  hungry: true
 });
 
 let charlie = new Dog();
