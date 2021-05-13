@@ -36,6 +36,27 @@ function expect(target) {
 // \___/\____/_/ /_/____/\__/_/   \__,_/\___/\__/\____/_/  /____/
 //
 // ONLY ADD CODE TO THIS SECTION
+function Human({name, pet, cool, feed} = {}) {
+  this.name = name;
+  this.pet = pet;
+  this.cool = cool;
+  this.feed = feed;
+  function pet(dog){
+    dog.status = 'happy';
+  }
+  function feed(dog){
+    dog.hungry = false;
+  }
+};
+
+function Dog({color, hungry , feed, owner, status} = {}) {
+  this.color = color;
+  this.hungry = hungry;
+  this.feed = feed;
+  this.owner = owner;
+  this.status = status;
+};
+
 
 
 
@@ -47,11 +68,13 @@ function expect(target) {
 
 let mady = new Human({
   name: 'Mady',
+  cool : false,
 });
 
 let faith = new Human({
   name: 'Faith',
   cool: true,
+  pet: "normal"
 });
 
 //        __
@@ -63,12 +86,14 @@ let faith = new Human({
 
 let oz = new Dog({
   color: "red",
-  hungry: false
+  hungry: false,
+  status: 'normal'
 });
 
 let moonshine = new Dog({
   color: "blue-red",
   owner: faith,
+  hungry: true
 });
 
 let charlie = new Dog();
